@@ -1,0 +1,302 @@
+<html>
+    <head>
+        <script src = 'operaciones.js'></script>
+        <link rel = "stylesheet" type= "text/css" href= "style.css">
+        <header>Calculadora</header>
+        <p>Made by: Jesus Molina</p>
+    </head>
+    <body>
+        <script>
+            var txt1 = false;
+            var txt2 = false;
+            var txt3 = false;
+            var e1 = document.createElement('input');
+            var e2 = document.createElement('input');
+            var e3 = document.createElement('input');
+            var e4 = document.createElement('button');
+            var e_1 = document.createElement('button');
+            var e_2 = document.createElement('button');
+            var e_3 = document.createElement('button');
+            var e_4 = document.createElement('button');
+            var e_5 = document.createElement('button');
+            var e_6 = document.createElement('button');
+            var e_7 = document.createElement('button');
+            var e_8 = document.createElement('button');
+            var e_9 = document.createElement('button');
+            var e_0 = document.createElement('button');
+            var add = document.createElement("button");
+            var sub = document.createElement("button");
+            var div = document.createElement("button");
+            var mult = document.createElement("button");
+            e_1.id = "nmb1";
+            e_1.innerHTML = "1";
+            e_2.id = "nmb2";
+            e_2.innerHTML = "2";
+            e_3.id = "nmb3";
+            e_3.innerHTML = "3";
+            e_4.id = "nmb4";
+            e_4.innerHTML = "4";
+            e_5.id = "nmb5";
+            e_5.innerHTML = "5";
+            e_6.id = "nmb6";
+            e_6.innerHTML = "6";
+            e_7.id = "nmb7";
+            e_7.innerHTML = "7";
+            e_8.id = "nmb8";
+            e_8.innerHTML = "8";
+            e_9.id = "nmb9";
+            e_9.innerHTML = "9";
+            e_0.id = "nmb0";
+            e_0.innerHTML = "0";
+            add.id = "addBtn";
+            add.innerHTML = "+";
+            sub.id = "subBtn";
+            sub.innerHTML = "-";
+            div.id = "divBtn";
+            div.innerHTML = "/";
+            mult.id = "multBtn";
+            mult.innerHTML = "*";
+            e1.id = "e1";
+            e2.id = "e2";
+            e3.id = "e3";
+            e4.id = "e4";
+            e1.value = "Valor X";
+            e2.value = "Operacion (+, -, /, *)";
+            e3.value = "Valor Y";
+            e4.innerHTML = "=";
+            document.body.appendChild(e_1);
+            document.body.appendChild(e_2);
+            document.body.appendChild(e_3);
+            document.body.appendChild(e_4);
+            document.body.appendChild(e_5);
+            document.body.appendChild(e_6);
+            document.body.appendChild(e_7);
+            document.body.appendChild(e_8);
+            document.body.appendChild(e_9);
+            document.body.appendChild(e_0);
+            document.body.appendChild(add);
+            document.body.appendChild(sub);
+            document.body.appendChild(div);
+            document.body.appendChild(mult);
+            document.body.appendChild(e1);
+            document.body.appendChild(e2);
+            document.body.appendChild(e3);
+            document.body.appendChild(e4);
+            e_1.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "1";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "1";
+                }
+            }
+            e_2.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "2";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "2";
+                }
+            }
+            e_3.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "3";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "3";
+                }
+            }
+            e_4.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "4";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "4";
+                }
+            }
+            e_5.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "5";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "5";
+                }
+            }
+            e_6.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "6";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "6";
+                }
+            }
+            e_7.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "7";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "7";
+                }
+            }
+            e_8.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "8";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "8";
+                }
+            }
+            e_9.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "9";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "9";
+                }
+            }
+            e_0.onclick = () =>{
+                if (txt1){
+                    e1.focus();
+                    e1.value += "0";
+                }
+
+                else if (txt3){
+                    e3.focus();
+                    e3.value += "0";
+                }
+            }
+            add.onclick = () =>{
+                if (txt2){
+                    e2.focus();
+                    e2.value = "+";
+                }
+            }
+            sub.onclick = () =>{
+                if (txt2){
+                    e2.focus();
+                    e2.value = "-";
+                }
+            }
+            div.onclick = () =>{
+                if (txt2){
+                    e2.focus();
+                    e2.value = "/";
+                }
+            }
+            mult.onclick = () =>{
+                if (txt2){
+                    e2.focus();
+                    e2.value = "*";
+                }
+            }
+            e1.addEventListener('keydown', key);
+            e2.addEventListener('keydown', keyOp);
+            e3.addEventListener('keydown', key);
+            function key(evt){
+                if(!(evt.keyCode >= 48 && evt.keyCode <= 57)){
+                    if(!(evt.keyCode >= 96 && evt.keyCode <= 105)){
+                        if(!(evt.keyCode == 8)){
+                            if(evt.target.value == ""){
+                                if ((evt.keyCode >= 48 && evt.keyCode <= 57) || 
+                                (evt.keyCode >= 96 && evt.keyCode <= 105) || (evt.keyCode == 109));
+                                else
+                                    evt.preventDefault();
+                            }
+                            else
+                                evt.preventDefault();
+                        }
+                    }
+                }
+            }
+            function keyOp(evt){
+                if(!(evt.keyCode == 111 || evt.keyCode == 106 || evt.keyCode == 109 || evt.keyCode == 107))
+                    evt.preventDefault();
+            }
+            e1.onclick = () =>{
+                e1.value = "";
+                txt1 = true;
+                txt2 = false;
+                txt3 = false;
+            }
+            e2.onclick = () =>{
+                e2.value = "";
+                txt1 = false;
+                txt2 = true;
+                txt3 = false;
+            }
+            e3.onclick = () =>{
+                e3.value = "";
+                txt1 = false;
+                txt2 = false;
+                txt3 = true;
+            }
+            e1.onblur = () =>{
+                if (!txt1){
+                    if (e1.value == "")
+                        e1.value = "Valor X";
+                }
+            }
+            e2.onblur = () =>{
+                if (!txt2){
+                    if (e2.value == "")
+                        e2.value = "Operacion (+, -, /, *)";
+                }
+            }
+            e3.onblur = () =>{
+                if (!txt3){
+                    if (e3.value == "")
+                        e3.value = "Valor Y";
+                }
+            }
+            e4.onclick = () =>{
+                switch (e2.value){
+                    case "+":{
+                        alert("Resultado = " + suma(parseInt(e1.value), parseInt(e3.value)));
+                        break;
+                    }
+                    case "-":{
+                        alert("Resultado = " + resta(parseInt(e1.value), parseInt(e3.value)));
+                        break;
+                    }
+                    case "*":{
+                        alert("Resultado = " + multiplicacion(parseInt(e1.value), parseInt(e3.value)));
+                        break;
+                    }
+                    case "/":{
+                        alert("Resultado = " + division(parseInt(e1.value), parseInt(e3.value)));
+                        break;
+                    }
+                    default:
+                        alert("Operacion invalida");
+                }
+            }
+        </script>
+    </body>
+</html>

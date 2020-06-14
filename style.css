@@ -1,0 +1,141 @@
+body{
+    background-color: black;
+}
+
+header{
+    color: cyan;
+    font-size: 50px;
+    position: absolute;
+    left: 460px;
+}
+
+p{
+    color: royalblue;
+    position: absolute;
+    left: 510px;
+    top: 55px;
+}
+
+#e1{
+    position: absolute;
+    top: 160px;
+    left: 300px;
+}
+
+#e2{
+    position: absolute;
+    top: 160px;
+    left: 500px;
+}
+
+#e3{
+    position: absolute;
+    top: 160px;
+    top: 160px;
+    left: 700px;
+}
+
+#e4{
+    position: absolute;
+    width: 50px;
+    top: 320px;
+    left: 570px;
+}
+
+#nmb1{
+    position: absolute;
+    top: 230px;
+    left: 450px;
+    width: 50px;
+}
+
+#nmb2{
+    position: absolute;
+    width: 50px;
+    top: 230px;
+    left: 510px;
+}
+
+#nmb3{
+    position: absolute;
+    width: 50px;
+    top: 230px;
+    left: 570px;
+}
+
+#addBtn{
+    position: absolute;
+    width: 50px;
+    top: 230px;
+    left: 630px;
+}
+
+#nmb4{
+    position: absolute;
+    width: 50px;
+    top: 260px;
+    left: 450px;
+}
+
+#nmb5{
+    position: absolute;
+    width: 50px;
+    top: 260px;
+    left: 510px;
+}
+
+#nmb6{
+    position: absolute;
+    width: 50px;
+    top: 260px;
+    left: 570px;
+}
+
+#subBtn{
+    position: absolute;
+    width: 50px;
+    top: 260px;
+    left: 630px;
+}
+
+#nmb7{
+    position: absolute;
+    width: 50px;
+    top: 290px;
+    left: 450px;
+}
+
+#nmb8{
+    position: absolute;
+    width: 50px;
+    top: 290px;
+    left: 510px;
+}
+
+#nmb9{
+    position: absolute;
+    width: 50px;
+    top: 290px;
+    left: 570px;
+}
+
+#divBtn{
+    position: absolute;
+    width: 50px;
+    top: 290px;
+    left: 630px;
+}
+
+#nmb0{
+    position: absolute;
+    width: 110px;
+    top: 320px;
+    left: 450px;
+}
+
+#multBtn{
+    position: absolute;
+    width: 50px;
+    top: 320px;
+    left: 630px;
+}
