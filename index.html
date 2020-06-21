@@ -5,11 +5,14 @@
         </header>
     </head>
     <body background="lib/Matrix.jpg" style="background-repeat: no-repeat;background-size:cover; background-color: black;">
-        <canvas id="canvas" width="730" height="330" style="border: 1px black; position: absolute;top: 200px;left: 500px;"></canvas>
+        <canvas id="canvas" width="182.5" height="330" style="position: absolute;top: 200px;left: 200px;"></canvas>
+        <canvas id="canvas1" width="219.5" height="218" style="position: absolute; top: 690px; left: 550px"></canvas>
+        <canvas id="canvas2" width="120" height="107.71" style="position: absolute;top: 200px;left: 200px;"></canvas>
         <audio style="position: absolute;left: 1050px;top: 150px;" controls>
             <source src="lib/idk.mp3" type="audio/mpeg">
         </audio>
-        <iframe style="position: absolute; top: 250px; left: 1035px;" width="320" height="210" src="https://www.youtube.com/embed/cqMfPS8jPys" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p id="colision_status" style="font-size: x-large; position: absolute;top: 150px; left: 20px;color: rgb(108, 226, 84);"><strong>Colision:</strong></p>
+        <iframe style="position: absolute; top: 250px; left: 1035px;" width="320" height="210" src="https://www.youtube.com/embed/XMEXPkPmmq0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <form onsubmit="test();return false" style="position:absolute; top: 30px; left: 1130px">
             <label for ="backgrounds" style="color:rgb(194, 194, 194)"><strong>Select a new background</strong></label>
             <select name ="backgrounds" id="backgrounds">
@@ -22,12 +25,15 @@
             <input type="submit" value="Submit">
         </form>
         <script>
+            var posxA = 0;
+            var limitRightA;
+            var limitLeftA;
+            var limitTopA = 200;
+            var limitBottomA = 530;
             let col = 4;
             let frame = 0;
-            var c = document.getElementById("canvas");
-            var ctx = c.getContext("2d");
-            ctx.fillStyle ="transparent";
-            ctx.fillRect(0,0,c.width,c.height);
+            let c = document.getElementById("canvas");
+            let ctx = c.getContext("2d");
             sprite = new Image();
             sprite.src = "lib/sans.png";
             sprite.onload = function(){
@@ -38,9 +44,119 @@
                         frame = 0;
                     }
                     ctx.clearRect(0,0,c.width,c.height);
+                    posxA = 200 + (sprite.width/col)*frame;
+                    c.style.left = posxA;
                     ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
+                    limitLeftA = 200 + posxA;
+                    limitRightA = limitLeftA + 182.5;
                 }, 500);
             }
+        </script>
+        <script>
+            var posyB = 0;
+            var posxB = 550;
+            var limitRightB = 550;
+            var limitLeftB = 769.5;
+            var limitTopB;
+            var limitBottomB;
+            let temp;
+            let frme = 0;
+            let cl = 2;
+            let row = 3;
+            let framexSize = 219.5;
+            let frameySize = 218;
+            let c1 = document.getElementById("canvas1");
+            let cntx = c1.getContext("2d");
+            let img = new Image();
+            img.src = "lib/jumping_bear.png";
+            img.onload = function(){
+                cntx.drawImage(img,framexSize/6,0,framexSize,frameySize,0,0,framexSize,frameySize);
+                setInterval(function(){
+                    ++frme;
+                    if(frme > 6){
+                        frme = 0;
+                    }
+                    cntx.clearRect(0,0,c1.width,c1.height);
+                    if (frme <= 3){
+                        posyB = 690 - (frameySize * frme);
+                        c1.style.top = posyB;
+                        if (frme == 0){
+                            cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
+                        }
+                        else if (frme == 1){
+                            cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                        }
+                        else if(frme == 2 || frme == 3){
+                            cntx.drawImage(img,framexSize/22,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                        }
+                    }
+                    if (frme >= 4){
+                        temp = posyB;
+                        posyB = temp + (frameySize * (frme - 4));
+                        c1.style.top = posyB;
+                        if (frme == 6){
+                            cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
+                        }
+                        else if (frme == 5 || frme == 4){
+                            cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                        }
+                    }
+                    limitTopB = posyB;
+                    limitBottomB = limitTopB + frameySize;
+                }, 300);
+            }
+        </script>
+        <script>
+            function collide(topA, boA, lA, rA, topB, boB, lB, rB){
+                if ((topB < boA || boB < boA) && (lA < rB || lB < rA)){
+                    document.getElementById("colision_status").innerHTML = "Colision: TRUE";
+                    return true;
+                }
+                else {
+                    document.getElementById("colision_status").innerHTML = "Colision: FALSE";
+                    return false;
+                }
+            }
+        </script>
+        <script>
+            function explosion(){
+                var running = true;
+                var crclm = 0;
+                var crrw = 0;
+                var fx = 840 / 7;
+                var fy = 754 / 7;
+                var clm = 7;
+                var rw = 7;
+                var ig = new Image();
+                ig.src = "lib/Explosion.png";
+                var cnv = document.getElementById("canvas2");
+                var ct = cnv.getContext("2d");
+                ct.fillStyle = "transparent";
+                ct.fillRect(0,0,fx,fy)
+                ig.onload = function(){
+                    ct.clearRect(0,0,fx,fy);
+                    ct.drawImage(ig, fx, 0, fx, fy, 0, 0, fx, fy);
+                    var interID = setInterval(function(){
+                        ++crclm;
+                        if (crclm > 6){
+                            crclm = 0;
+                            ++crrw;
+                        }
+                        if (crrw > 6){
+                            clearInterval(interID);
+                        }
+                        ct.clearRect(0,0,fx,fy);
+                        ct.drawImage(ig, fx*crclm, fy*crrw,fx,fy,0,0,fx,fy);
+                    }, 1);
+                }
+            }
+        </script>
+        <script>
+            setInterval(function(){
+                if (collide(limitTopA, limitBottomA, limitLeftA, limitRightA, limitTopB, limitBottomB, limitLeftB, limitRightB)){
+                    explosion();
+                }
+            }, 50);
         </script>
         <script>
             function test(){
