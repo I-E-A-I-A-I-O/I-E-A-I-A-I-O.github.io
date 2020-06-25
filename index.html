@@ -27,6 +27,13 @@
             </select>
             <input type="submit" value="Submit">
         </form>
+        <button id="controls" type="button" style="position: absolute; top: 400px;">Show controls</button>
+        <script>
+            document.getElementById("controls").onclick = () =>{
+                alert("Controls:\nBear:\n   Up: Space\n   Down: C\n   Left: A\n   Right: D\nSans:\n   Left: Numpad4\n   Right: Numpad6");
+                document.getElementById("controls").blur();
+            }
+        </script>
         <script>
             var posxA = 200;
             var limitRightA;
