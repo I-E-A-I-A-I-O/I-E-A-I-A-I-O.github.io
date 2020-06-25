@@ -15,7 +15,7 @@
             <source src="lib/idk.mp3" type="audio/mpeg">
         </audio>
         <p id="colision_status" style="font-size: x-large; position: absolute;top: 150px; left: 20px;color: rgb(108, 226, 84);"><strong>Colision:</strong></p>
-        <iframe style="position: absolute; top: 250px; left: 1000px;" width="320" height="210" src="https://www.youtube.com/embed/nwN0DRfbREs?autoplay=true&start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe style="position: absolute; top: 250px; left: 1000px;" width="320" height="210" src="https://www.youtube.com/embed/nwN0DRfbREs?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <form onsubmit="test();return false" style="position:absolute; top: 30px; left: 1130px">
             <label for ="backgrounds" style="color:rgb(194, 194, 194)"><strong>Select a new background</strong></label>
             <select name ="backgrounds" id="backgrounds">
@@ -28,7 +28,7 @@
             <input type="submit" value="Submit">
         </form>
         <script>
-            var posxA = 0;
+            var posxA = 200;
             var limitRightA;
             var limitLeftA;
             var limitTopA = 200;
@@ -39,31 +39,46 @@
             let ctx = c.getContext("2d");
             sprite = new Image();
             sprite.src = "lib/sans.png";
+            sprite2 = new Image();
+            sprite2.src = "lib/sans_flip.png";
             sprite.onload = function(){
                 ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
-                setInterval(function(){
-                    ++frame;
-                    if (frame > col - 1){
-                        frame = 0;
+                document.body.onkeypress = (evt) =>{
+                    if (evt.keyCode == 54){
+                        if (frame < 3){
+                            ++frame;
+                            ctx.clearRect(0,0,c.width,c.height);
+                            posxA = posxA + (sprite.width/col);
+                            c.style.left = posxA;
+                            ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
+                            limitLeftA = posxA;
+                            limitRightA = limitLeftA + 182.5;
+                        }
                     }
-                    ctx.clearRect(0,0,c.width,c.height);
-                    posxA = 200 + (sprite.width/col)*frame;
-                    c.style.left = posxA;
-                    ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
-                    limitLeftA = 200 + posxA;
-                    limitRightA = limitLeftA + 182.5;
-                }, 500);
+                    else if (evt.keyCode == 52){
+                        if (frame > 0){
+                            --frame;
+                            ctx.clearRect(0,0,c.width,c.height);
+                            posxA = posxA - (sprite2.width/col);
+                            c.style.left = posxA;
+                            ctx.drawImage(sprite2, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
+                            limitLeftA = posxA;
+                            limitRightA = limitLeftA + 182.5;
+                        }
+                    }
+                }
             }
         </script>
         <script>
-            var posyB = 0;
+            var posyB = 690;
             var posxB = 550;
             var limitRightB = 550;
             var limitLeftB = 769.5;
             var limitTopB;
             var limitBottomB;
             let temp;
-            let frme = 0;
+            let frmey = 0;
+            let frmex = 0;
             let cl = 2;
             let row = 3;
             let framexSize = 219.5;
@@ -71,47 +86,92 @@
             let c1 = document.getElementById("canvas1");
             let cntx = c1.getContext("2d");
             let img = new Image();
+            let img2 = new Image();
+            img2.src = "lib/jumping_bear_flip.png"
             img.src = "lib/jumping_bear.png";
             img.onload = function(){
                 cntx.drawImage(img,framexSize/6,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                setInterval(function(){
-                    ++frme;
-                    if(frme > 6){
-                        frme = 0;
+                window.onkeypress = (evt) =>{
+                    if (evt.keyCode == 32){
+                        if(frmey < 3){
+                            ++frmey;
+                            cntx.clearRect(0,0,c1.width,c1.height);
+                            if (frmey <= 3){
+                                var temp = posyB;
+                                posyB = temp - (frameySize);
+                                c1.style.top = posyB;
+                                if (frmey == 0){
+                                    cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
+                                }
+                                else if (frmey == 1){
+                                    cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                                }
+                                else if(frmey == 2 || frmey == 3){
+                                    cntx.drawImage(img,framexSize/22,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                                }
+                            }
+                            if (frmey >= 4){
+                                var temp = posyB;
+                                posyB = temp - (frameySize);
+                                c1.style.top = posyB;
+                                if (frmey == 6){
+                                    cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
+                                }
+                                else if (frmey == 5 || frmey == 4){
+                                    cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                                }
+                            }
+                            limitTopB = posyB;
+                            limitBottomB = limitTopB + frameySize;
+                            limitLeftB = posxB;
+                            limitRightB = limitLeftB + framexSize; 
+                        }
                     }
-                    cntx.clearRect(0,0,c1.width,c1.height);
-                    if (frme <= 3){
-                        posyB = 690 - (frameySize * frme);
-                        c1.style.top = posyB;
-                        if (frme == 0){
+                    else if(evt.keyCode == 99){
+                        if (frmey >= 1){
+                            --frmey;
+                            cntx.clearRect(0,0,c1.width,c1.height);
+                            posyB = posyB + (frameySize);
+                            c1.style.top = posyB;
                             cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                        }
-                        else if (frme == 1){
-                            cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
-                        }
-                        else if(frme == 2 || frme == 3){
-                            cntx.drawImage(img,framexSize/22,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                            limitTopB = posyB;
+                            limitBottomB = limitTopB + frameySize;
+                            limitLeftB = posxB;
+                            limitRightB = limitLeftB + framexSize; 
                         }
                     }
-                    if (frme >= 4){
-                        temp = posyB;
-                        posyB = temp + (frameySize * (frme - 4));
-                        c1.style.top = posyB;
-                        if (frme == 6){
-                            cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                        }
-                        else if (frme == 5 || frme == 4){
-                            cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
+                    else if (evt.keyCode == 100){
+                        if (frmex < 1){
+                            ++frmex;
+                            cntx.clearRect(0,0,c.width,c.height);
+                            posxB = posxB + (framexSize);
+                            c1.style.left = posxB;
+                            cntx.drawImage(img, framexSize,frameySize*0.9,framexSize,frameySize - 20,30,-30,framexSize,frameySize);
+                            limitTopB = posyB;
+                            limitBottomB = limitTopB + frameySize;
+                            limitLeftB = posxB;
+                            limitRightB = limitLeftB + framexSize; 
                         }
                     }
-                    limitTopB = posyB;
-                    limitBottomB = limitTopB + frameySize;
-                }, 300);
+                    else if (evt.keyCode == 97){
+                        if (frmex >= -1){
+                            --frmex;
+                            cntx.clearRect(0,0,c.width,c.height);
+                            posxB = posxB - (framexSize);
+                            c1.style.left = posxB;
+                            cntx.drawImage(img2, framexSize,frameySize*0.9,framexSize,frameySize - 20,30,-30,framexSize,frameySize);
+                            limitTopB = posyB;
+                            limitBottomB = limitTopB + frameySize;
+                            limitLeftB = posxB;
+                            limitRightB = limitLeftB + framexSize; 
+                        }
+                    }
+                }
             }
         </script>
         <script>
             function collide(topA, boA, lA, rA, topB, boB, lB, rB){
-                if ((topB < boA || boB < boA) && (lA < rB || lB < rA)){
+                if ((lA < rB && lB < rA) && (topA <= boB && boA >= topB)){
                     document.getElementById("colision_status").innerHTML = "Colision: TRUE";
                     return true;
                 }
@@ -164,6 +224,11 @@
         <script>
             function test(){
                 document.body.background = document.getElementById("backgrounds").value;
+            }
+        </script>
+        <script>
+            document.body.onload = function(){
+                alert("Controls:\nBear:\n   Up: Space\n   Down: C\n   Left: A\n   Right: D\nSans:\n   Left: Numpad4\n   Right: Numpad6");
             }
         </script>
     </body>
