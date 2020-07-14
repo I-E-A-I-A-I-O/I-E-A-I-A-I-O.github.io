@@ -1,242 +1,56 @@
 <html>
     <head>
-        <header id="h1" style="color: rgb(132, 199, 45); font-size: xx-large; position: absolute; top: 60px; left: 520px;">
-            <strong>Web 1: Asignacion 2</strong>
+        <script src="Menu_Component.js"> </script>
+        <p>
+            <strong>
+                MENU DE NAVEGACION ENTRE PROYECTOS
+            </strong>
+        </p>
+        <header>
+            Hecho por Jesus Molina
         </header>
     </head>
-    <body background="lib/Matrix.jpg" style="background-repeat: no-repeat;background-size:cover; background-color: black;">
-        <canvas id="canvas" width="182.5" height="330" style="position: absolute;top: 200px;left: 200px;"></canvas>
-        <canvas id="canvas1" width="219.5" height="218" style="position: absolute; top: 690px; left: 550px"></canvas>
-        <video controls style="position: absolute; top: 500px; left: 980px">
-            <source src="lib/video.mp4" type="video/mp4">
-        </video>
-        <canvas id="canvas2" width="120" height="107.71" style="position: absolute;top: 200px;left: 200px;"></canvas>
-        <audio style="position: absolute;left: 1050px;top: 150px;" controls>
-            <source src="lib/idk.mp3" type="audio/mpeg">
-        </audio>
-        <p id="colision_status" style="font-size: x-large; position: absolute;top: 150px; left: 20px;color: rgb(108, 226, 84);"><strong>Colision:</strong></p>
-        <iframe style="position: absolute; top: 250px; left: 1000px;" width="320" height="210" src="https://www.youtube.com/embed/nwN0DRfbREs?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <form onsubmit="test();return false" style="position:absolute; top: 30px; left: 1130px">
-            <label for ="backgrounds" style="color:rgb(194, 194, 194)"><strong>Select a new background</strong></label>
-            <select name ="backgrounds" id="backgrounds">
-                <option value="lib/Space.jpg">Space</option>
-                <option value="lib/car.jpg">Some car</option>
-                <option value="lib/Pain.jpg">Pain</option>
-                <Option value="lib/Matrix.jpg">Matrix</Option>
-                <option value="">No background</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
-        <button id="controls" type="button" style="position: absolute; top: 400px;">Show controls</button>
+    <body style="background-color:darksalmon;">
         <script>
-            document.getElementById("controls").onclick = () =>{
-                alert("Controls:\nBear:\n   Up: Space\n   Down: C\n   Left: A\n   Right: D\nSans:\n   Left: Numpad4\n   Right: Numpad6");
-                document.getElementById("controls").blur();
+            function Refresh()
+            {
+                location.reload();
+            }
+            function Hi()
+            {
+                var hiAudio = new Audio("lib/hi_mark.mp3");
+                hiAudio.play();
+            }
+            function OpenTab()
+            {
+                window.open();
             }
         </script>
         <script>
-            var posxA = 200;
-            var limitRightA;
-            var limitLeftA;
-            var limitTopA = 200;
-            var limitBottomA = 530;
-            let col = 4;
-            let frame = 0;
-            let c = document.getElementById("canvas");
-            let ctx = c.getContext("2d");
-            sprite = new Image();
-            sprite.src = "lib/sans.png";
-            sprite2 = new Image();
-            sprite2.src = "lib/sans_flip.png";
-            sprite.onload = function(){
-                ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
-                document.body.onkeypress = (evt) =>{
-                    if (evt.keyCode == 54){
-                        if (frame < 3){
-                            ++frame;
-                            ctx.clearRect(0,0,c.width,c.height);
-                            posxA = posxA + (sprite.width/col);
-                            c.style.left = posxA;
-                            ctx.drawImage(sprite, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
-                            limitLeftA = posxA;
-                            limitRightA = limitLeftA + 182.5;
-                        }
-                    }
-                    else if (evt.keyCode == 52){
-                        if (frame > 0){
-                            --frame;
-                            ctx.clearRect(0,0,c.width,c.height);
-                            posxA = posxA - (sprite2.width/col);
-                            c.style.left = posxA;
-                            ctx.drawImage(sprite2, (sprite.width / col) * frame, 0, (sprite.width / col), sprite.height, 0, 0, sprite.width / col, sprite.height);
-                            limitLeftA = posxA;
-                            limitRightA = limitLeftA + 182.5;
-                        }
-                    }
-                }
-            }
+            var menu = new MenuComponent();
+            document.body.appendChild(menu);
+            menu.changeXY("optionlist", "200", "120");
+            menu.changeXY("inmenulist", "80", "120");
+            menu.setButtonText("home", "Home");
+            menu.setButtonLink("home", "https://i-e-a-i-a-i-o.github.io/index.html");
+            menu.setButtonText("button2", "Projects");
+            menu.setButtonText("link1", "Project 1");
+            menu.setButtonLink("link1", "https://i-e-a-i-a-i-o.github.io/deprecated/proyecto_1/index.html");
+            menu.setButtonText("link2", "Project 2");
+            menu.setButtonLink("link2", "https://i-e-a-i-a-i-o.github.io/deprecated/proyecto_2/index.html");
+            menu.setButtonText("button3", "Explorer options");
+            menu.setButtonText("option1", "Refresh page");
+            menu.setButtonText("option2", "Say hi");
+            menu.setButtonText("option3", "New tab");
+            menu.defineButtonAction("option1", Refresh);
+            menu.defineButtonAction("option2", Hi);
+            menu.defineButtonAction("option3", OpenTab);
         </script>
-        <script>
-            var posyB = 690;
-            var posxB = 550;
-            var limitRightB = 550;
-            var limitLeftB = 769.5;
-            var limitTopB;
-            var limitBottomB;
-            let temp;
-            let frmey = 0;
-            let frmex = 0;
-            let cl = 2;
-            let row = 3;
-            let framexSize = 219.5;
-            let frameySize = 218;
-            let c1 = document.getElementById("canvas1");
-            let cntx = c1.getContext("2d");
-            let img = new Image();
-            let img2 = new Image();
-            img2.src = "lib/jumping_bear_flip.png"
-            img.src = "lib/jumping_bear.png";
-            img.onload = function(){
-                cntx.drawImage(img,framexSize/6,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                window.onkeypress = (evt) =>{
-                    if (evt.keyCode == 32){
-                        if(frmey < 3){
-                            ++frmey;
-                            cntx.clearRect(0,0,c1.width,c1.height);
-                            if (frmey <= 3){
-                                var temp = posyB;
-                                posyB = temp - (frameySize);
-                                c1.style.top = posyB;
-                                if (frmey == 0){
-                                    cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                                }
-                                else if (frmey == 1){
-                                    cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
-                                }
-                                else if(frmey == 2 || frmey == 3){
-                                    cntx.drawImage(img,framexSize/22,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
-                                }
-                            }
-                            if (frmey >= 4){
-                                var temp = posyB;
-                                posyB = temp - (frameySize);
-                                c1.style.top = posyB;
-                                if (frmey == 6){
-                                    cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                                }
-                                else if (frmey == 5 || frmey == 4){
-                                    cntx.drawImage(img,framexSize,frameySize*1.8,framexSize,frameySize,0,0,framexSize,frameySize);
-                                }
-                            }
-                            limitTopB = posyB;
-                            limitBottomB = limitTopB + frameySize;
-                            limitLeftB = posxB;
-                            limitRightB = limitLeftB + framexSize; 
-                        }
-                    }
-                    else if(evt.keyCode == 99){
-                        if (frmey >= 1){
-                            --frmey;
-                            cntx.clearRect(0,0,c1.width,c1.height);
-                            posyB = posyB + (frameySize);
-                            c1.style.top = posyB;
-                            cntx.drawImage(img,framexSize/22,0,framexSize,frameySize,0,0,framexSize,frameySize);
-                            limitTopB = posyB;
-                            limitBottomB = limitTopB + frameySize;
-                            limitLeftB = posxB;
-                            limitRightB = limitLeftB + framexSize; 
-                        }
-                    }
-                    else if (evt.keyCode == 100){
-                        if (frmex < 1){
-                            ++frmex;
-                            cntx.clearRect(0,0,c.width,c.height);
-                            posxB = posxB + (framexSize);
-                            c1.style.left = posxB;
-                            cntx.drawImage(img, framexSize,frameySize*0.9,framexSize,frameySize - 20,30,-30,framexSize,frameySize);
-                            limitTopB = posyB;
-                            limitBottomB = limitTopB + frameySize;
-                            limitLeftB = posxB;
-                            limitRightB = limitLeftB + framexSize; 
-                        }
-                    }
-                    else if (evt.keyCode == 97){
-                        if (frmex >= -1){
-                            --frmex;
-                            cntx.clearRect(0,0,c.width,c.height);
-                            posxB = posxB - (framexSize);
-                            c1.style.left = posxB;
-                            cntx.drawImage(img2, framexSize,frameySize*0.9,framexSize,frameySize - 20,30,-30,framexSize,frameySize);
-                            limitTopB = posyB;
-                            limitBottomB = limitTopB + frameySize;
-                            limitLeftB = posxB;
-                            limitRightB = limitLeftB + framexSize; 
-                        }
-                    }
-                }
-            }
-        </script>
-        <script>
-            function collide(topA, boA, lA, rA, topB, boB, lB, rB){
-                if ((lA < rB && lB < rA) && (topA <= boB && boA >= topB)){
-                    document.getElementById("colision_status").innerHTML = "Colision: TRUE";
-                    return true;
-                }
-                else {
-                    document.getElementById("colision_status").innerHTML = "Colision: FALSE";
-                    return false;
-                }
-            }
-        </script>
-        <script>
-            function explosion(){
-                var running = true;
-                var crclm = 0;
-                var crrw = 0;
-                var fx = 840 / 7;
-                var fy = 754 / 7;
-                var clm = 7;
-                var rw = 7;
-                var ig = new Image();
-                ig.src = "lib/Explosion.png";
-                var cnv = document.getElementById("canvas2");
-                var ct = cnv.getContext("2d");
-                ct.fillStyle = "transparent";
-                ct.fillRect(0,0,fx,fy)
-                ig.onload = function(){
-                    ct.clearRect(0,0,fx,fy);
-                    ct.drawImage(ig, fx, 0, fx, fy, 0, 0, fx, fy);
-                    var interID = setInterval(function(){
-                        ++crclm;
-                        if (crclm > 6){
-                            crclm = 0;
-                            ++crrw;
-                        }
-                        if (crrw > 6){
-                            clearInterval(interID);
-                        }
-                        ct.clearRect(0,0,fx,fy);
-                        ct.drawImage(ig, fx*crclm, fy*crrw,fx,fy,0,0,fx,fy);
-                    }, 1);
-                }
-            }
-        </script>
-        <script>
-            setInterval(function(){
-                if (collide(limitTopA, limitBottomA, limitLeftA, limitRightA, limitTopB, limitBottomB, limitLeftB, limitRightB)){
-                    explosion();
-                }
-            }, 50);
-        </script>
-        <script>
-            function test(){
-                document.body.background = document.getElementById("backgrounds").value;
-            }
-        </script>
-        <script>
-            document.body.onload = function(){
-                alert("Controls:\nBear:\n   Up: Space\n   Down: C\n   Left: A\n   Right: D\nSans:\n   Left: Numpad4\n   Right: Numpad6");
-            }
-        </script>
+        <p style="font-size: large;">
+            Con este menu se puede navegar entre las diferentes paginas de los proyectos ya hechos.
+        </p>
+        <p style="font-size: large;">
+            Este menu como tal cuenta como el tercer proyecto realizado.
+        </p>
     </body>
 </html>
