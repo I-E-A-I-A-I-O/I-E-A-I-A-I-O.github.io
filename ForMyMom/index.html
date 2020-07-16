@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="lib/colorChanger.js"></script>
+        <p style="font-size: xxx-large; left: 620px; position: absolute; top: 20px;">
+            <strong id="F">F</strong><strong id="E1">E</strong><strong id="L1">L</strong><strong id="I">I</strong><strong id="Z">Z</strong>
+        </p>
+        <p style="font-size: xxx-large; position: absolute; top: 510px; left: 520px;">
+            <strong id="C">C</strong><strong id="U">U</strong><strong id="M">M</strong><strong id="P">P</strong><strong id="L2">L</strong><strong id="E2">E</strong><strong id="A">A</strong><strong id="ENE">&Ntilde</strong><strong id="O">O</strong><strong id="S">S</strong>
+        </p>
+    </head>
+    <body style="background-image: url(lib/Mom.jpeg);">
+        <script>
+            var cakegif = new Image();
+            cakegif.src = "lib/cake.gif";
+            document.body.appendChild(cakegif);
+            cakegif.style.width = "320";
+            cakegif.style.height = "320";
+            cakegif.style.position = "absolute";
+            cakegif.style.top = "240px";
+        </script>
+        <script>
+            var cakegif2 = new Image();
+            cakegif2.src = "lib/cake.gif";
+            document.body.appendChild(cakegif2);
+            cakegif2.style.width = "320";
+            cakegif2.style.height = "320";
+            cakegif2.style.position = "absolute";
+            cakegif2.style.left = "1000px";
+            cakegif2.style.top = "240px";
+        </script>
+        <script>
+            var bananas = new Image();
+            bananas.src = "lib/bananas.gif";
+            document.body.appendChild(bananas);
+            bananas.style.position = "absolute";
+            bananas.style.top = "250px"
+            bananas.style.left = "420px";
+        </script>
+        <script>
+            var bdaysong = new Audio();
+            bdaysong.src = "lib/bdaySong.mp3";
+            bdaysong.play();
+            bdaysong.loop = true;
+        </script>
+        <script>
+            var colors = Array("yellow", "blue", "red");
+            var IDs = Array("F", "E1", "L1", "I", "Z", "C", "U", "M", "P", "L2", "E2", "A", "ENE", "O", "S");
+            var i = 0;
+            changeColor(IDs, colors, i);
+            setInterval(() =>{
+                changeColor(IDs, colors, i);
+
+                i++;
+                if (i > colors.length - 1)
+                    i = 0;
+            }, 1000);
+        </script>
+    </body>
+</html>
